@@ -1,0 +1,182 @@
+[
+  {
+    "date": "2026-09-25",
+    "slot": "morning",
+    "word": "cheat in an exam",
+    "question": "Don't ___ in an exam.",
+    "options": ["cheat", "plant", "recycle", "save"],
+    "correct": 0,
+    "explanation": "Cheat in an exam means you don't do it honestly."
+  },
+  {
+    "date": "2026-09-25",
+    "slot": "evening",
+    "word": "into",
+    "question": "The cat went ___ the box.",
+    "options": ["into", "tall", "shy", "lazy"],
+    "correct": 0,
+    "explanation": "Into means going inside."
+  },
+  {
+    "date": "2026-09-28",
+    "slot": "morning",
+    "word": "tall",
+    "question": "My brother is very ___.",
+    "options": ["tall", "across", "litter", "pollute"],
+    "correct": 0,
+    "explanation": "Tall means not short."
+  },
+  {
+    "date": "2026-09-28",
+    "slot": "evening",
+    "word": "cheerful",
+    "question": "She smiles a lot. She is ___.",
+    "options": ["cheerful", "under", "steal", "graffiti"],
+    "correct": 0,
+    "explanation": "A cheerful person is happy."
+  },
+  {
+    "date": "2026-09-29",
+    "slot": "morning",
+    "word": "recycle",
+    "question": "We ___ old bottles and paper.",
+    "options": ["recycle", "bully", "lie", "fight"],
+    "correct": 0,
+    "explanation": "Recycle means use something again in a new way."
+  },
+  {
+    "date": "2026-09-29",
+    "slot": "evening",
+    "word": "spray graffiti",
+    "question": "Don't ___ on the wall.",
+    "options": ["spray graffiti", "drop litter", "play truant", "copy someone's homework"],
+    "correct": 0,
+    "explanation": "Spray graffiti means paint on walls. It is not allowed."
+  },
+  {
+    "date": "2026-09-30",
+    "slot": "morning",
+    "word": "along",
+    "question": "We walked ___ the river.",
+    "options": ["along", "moody", "generous", "rude"],
+    "correct": 0,
+    "explanation": "Along means you follow the river."
+  },
+  {
+    "date": "2026-09-30",
+    "slot": "evening",
+    "word": "shy",
+    "question": "He is quiet with new people. He is ___.",
+    "options": ["shy", "up", "off", "down"],
+    "correct": 0,
+    "explanation": "A shy person does not like talking to new people."
+  },
+  {
+    "date": "2026-10-01",
+    "slot": "morning",
+    "word": "beard",
+    "question": "He has a ___ on his chin.",
+    "options": ["beard", "glasses", "moustache", "tall"],
+    "correct": 0,
+    "explanation": "A beard is hair on a man's chin and cheeks."
+  },
+  {
+    "date": "2026-10-01",
+    "slot": "evening",
+    "word": "pollute",
+    "question": "Smoke can ___ the air.",
+    "options": ["pollute", "friendly", "clever", "talkative"],
+    "correct": 0,
+    "explanation": "Pollute means make something dirty."
+  },
+  {
+    "date": "2026-10-02",
+    "slot": "morning",
+    "word": "lie",
+    "question": "Don't ___. Say what is true.",
+    "options": ["lie", "plant", "save", "reuse"],
+    "correct": 0,
+    "explanation": "Lie means say something that is not true."
+  },
+  {
+    "date": "2026-10-02",
+    "slot": "evening",
+    "word": "over",
+    "question": "The bird flew ___ the house.",
+    "options": ["over", "selfish", "stupid", "lazy"],
+    "correct": 0,
+    "explanation": "Over means above something."
+  },
+  {
+    "date": "2026-10-05",
+    "slot": "morning",
+    "word": "hard-working",
+    "question": "She studies every day. She is ___.",
+    "options": ["hard-working", "out of", "into", "under"],
+    "correct": 0,
+    "explanation": "A hard-working person works or studies a lot."
+  },
+  {
+    "date": "2026-10-05",
+    "slot": "evening",
+    "word": "drop litter",
+    "question": "Don't ___ rubbish in the street.",
+    "options": ["drop litter", "play loud music", "play truant", "be rude"],
+    "correct": 0,
+    "explanation": "Drop litter means throw rubbish on the ground."
+  },
+  {
+    "date": "2026-10-06",
+    "slot": "morning",
+    "word": "plant",
+    "question": "Let's ___ a tree in the garden.",
+    "options": ["plant", "bully", "steal", "fight"],
+    "correct": 0,
+    "explanation": "Plant means put a tree or flower in the ground."
+  },
+  {
+    "date": "2026-10-06",
+    "slot": "evening",
+    "word": "glasses",
+    "question": "I can't see well. I wear ___.",
+    "options": ["glasses", "beard", "moustache", "well-built"],
+    "correct": 0,
+    "explanation": "Glasses help people see."
+  },
+  {
+    "date": "2026-10-07",
+    "slot": "morning",
+    "word": "across",
+    "question": "They walked ___ the road.",
+    "options": ["across", "cheerful", "friendly", "clever"],
+    "correct": 0,
+    "explanation": "Across means from one side to the other side."
+  },
+  {
+    "date": "2026-10-07",
+    "slot": "evening",
+    "word": "talkative",
+    "question": "She talks a lot. She is ___.",
+    "options": ["talkative", "through", "around", "along"],
+    "correct": 0,
+    "explanation": "A talkative person talks a lot."
+  },
+  {
+    "date": "2026-10-08",
+    "slot": "morning",
+    "word": "save",
+    "question": "Please ___ water. Don't waste it.",
+    "options": ["save", "beard", "moustache", "glasses"],
+    "correct": 0,
+    "explanation": "Save water means use less water."
+  },
+  {
+    "date": "2026-10-08",
+    "slot": "evening",
+    "word": "use a mobile phone in class",
+    "question": "Don't ___ a mobile phone in class.",
+    "options": ["use", "plant", "cut down", "clean up"],
+    "correct": 0,
+    "explanation": "Use a mobile phone in class is against the rules."
+  }
+]

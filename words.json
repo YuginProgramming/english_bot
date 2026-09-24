@@ -1,0 +1,90 @@
+{
+  "units": [
+    {
+      "id": "unit4",
+      "title": "Is It A Crime?",
+      "sections": [
+        {
+          "title": "Breaking the rules",
+          "words": [
+            "be rude",
+            "bully",
+            "cheat in an exam",
+            "copy someone's homework",
+            "drop litter",
+            "fight",
+            "lie",
+            "play loud music",
+            "play truant",
+            "spray graffiti",
+            "steal something",
+            "use a mobile phone in class"
+          ]
+        },
+        {
+          "title": "Prepositions of movement",
+          "words": [
+            "across",
+            "along",
+            "around",
+            "down",
+            "into",
+            "off",
+            "out of",
+            "over",
+            "through",
+            "under",
+            "up"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit5",
+      "title": "Look At You",
+      "sections": [
+        {
+          "title": "Appearance",
+          "words": ["tall", "well-built", "beard", "glasses", "moustache"]
+        },
+        {
+          "title": "Personality adjectives",
+          "words": [
+            "cheerful",
+            "clever",
+            "friendly",
+            "generous",
+            "hard-working",
+            "lazy",
+            "moody",
+            "selfish",
+            "shy",
+            "stupid",
+            "talkative",
+            "unfriendly"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "unit6",
+      "title": "It's Your World",
+      "sections": [
+        {
+          "title": "Environment verbs",
+          "words": [
+            "clean up",
+            "cut down",
+            "damage",
+            "plant",
+            "pollute",
+            "protect",
+            "recycle",
+            "reuse",
+            "save"
+          ]
+        }
+      ]
+    }
+  ]
+}
