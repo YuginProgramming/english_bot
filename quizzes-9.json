@@ -1,0 +1,272 @@
+[
+  {
+    "date": "2026-09-28",
+    "slot": "morning",
+    "word": "engineer",
+    "question": "She designs bridges. She is an ___.",
+    "options": ["cook", "engineer", "librarian", "painter"],
+    "correct": 1,
+    "explanation": "An engineer designs and builds things like bridges."
+  },
+  {
+    "date": "2026-09-28",
+    "slot": "evening",
+    "word": "cook",
+    "question": "He works in a kitchen. He is a ___.",
+    "options": ["cook", "plumber", "scientist", "manager"],
+    "correct": 0,
+    "explanation": "A cook prepares food."
+  },
+  {
+    "date": "2026-09-29",
+    "slot": "morning",
+    "word": "flight attendant",
+    "question": "She helps passengers on a plane. She is a ___.",
+    "options": ["lorry driver", "painter", "flight attendant", "librarian"],
+    "correct": 2,
+    "explanation": "A flight attendant works on a plane and helps passengers."
+  },
+  {
+    "date": "2026-09-29",
+    "slot": "evening",
+    "word": "lorry driver",
+    "question": "He drives a large truck. He is a ___.",
+    "options": ["travel agent", "lorry driver", "music critic", "lifeguard"],
+    "correct": 1,
+    "explanation": "A lorry driver drives a large truck."
+  },
+  {
+    "date": "2026-09-30",
+    "slot": "morning",
+    "word": "librarian",
+    "question": "She works with books in a library. She is a ___.",
+    "options": ["cleaner", "cook", "entrepreneur", "librarian"],
+    "correct": 3,
+    "explanation": "A librarian works with books in a library."
+  },
+  {
+    "date": "2026-09-30",
+    "slot": "evening",
+    "word": "plumber",
+    "question": "He fixes water pipes. He is a ___.",
+    "options": ["psychologist", "plumber", "interpreter", "film director"],
+    "correct": 1,
+    "explanation": "A plumber fixes pipes and water systems."
+  },
+  {
+    "date": "2026-10-01",
+    "slot": "morning",
+    "word": "computer programmer",
+    "question": "She writes programs. She is a ___.",
+    "options": ["computer programmer", "flight attendant", "cleaner", "painter"],
+    "correct": 0,
+    "explanation": "A computer programmer writes programs for computers."
+  },
+  {
+    "date": "2026-10-01",
+    "slot": "evening",
+    "word": "fashion designer",
+    "question": "He creates new clothes. He is a ___.",
+    "options": ["lorry driver", "lifeguard", "plumber", "fashion designer"],
+    "correct": 3,
+    "explanation": "A fashion designer creates clothes."
+  },
+  {
+    "date": "2026-10-02",
+    "slot": "morning",
+    "word": "dentist's assistant",
+    "question": "She helps the dentist. She is a ___.",
+    "options": ["music critic", "dentist's assistant", "manager", "cook"],
+    "correct": 1,
+    "explanation": "A dentist's assistant helps the dentist with patients."
+  },
+  {
+    "date": "2026-10-02",
+    "slot": "evening",
+    "word": "veterinary assistant",
+    "question": "He helps a vet with animals. He is a ___.",
+    "options": ["travel agent", "librarian", "engineer", "veterinary assistant"],
+    "correct": 3,
+    "explanation": "A veterinary assistant helps a vet look after animals."
+  },
+  {
+    "date": "2026-10-05",
+    "slot": "morning",
+    "word": "summer job",
+    "question": "She works only in July and August. It is a ___.",
+    "options": ["pay rise", "summer job", "diploma", "speech"],
+    "correct": 1,
+    "explanation": "A summer job is work you do during the summer."
+  },
+  {
+    "date": "2026-10-05",
+    "slot": "evening",
+    "word": "full-time",
+    "question": "He works the whole week. His job is ___.",
+    "options": ["full-time", "part-time", "temporary", "badly-paid"],
+    "correct": 0,
+    "explanation": "Full-time means you work the full working week."
+  },
+  {
+    "date": "2026-10-06",
+    "slot": "morning",
+    "word": "part-time",
+    "question": "She works only a few hours a day. Her job is ___.",
+    "options": ["permanent", "well-paid", "part-time", "hands-on"],
+    "correct": 2,
+    "explanation": "Part-time means fewer hours than a full-time job."
+  },
+  {
+    "date": "2026-10-06",
+    "slot": "evening",
+    "word": "temporary",
+    "question": "The job lasts only two months. It is ___.",
+    "options": ["permanent", "full-time", "sociable", "temporary"],
+    "correct": 3,
+    "explanation": "Temporary means the job is only for a short time."
+  },
+  {
+    "date": "2026-10-07",
+    "slot": "morning",
+    "word": "permanent",
+    "question": "This job continues for many years. It is ___.",
+    "options": ["permanent", "temporary", "overtime", "part-time"],
+    "correct": 0,
+    "explanation": "Permanent means the job is not only for a short time."
+  },
+  {
+    "date": "2026-10-07",
+    "slot": "evening",
+    "word": "overtime",
+    "question": "She stays after her normal hours. She does ___.",
+    "options": ["a bonus", "a vacancy", "overtime", "a shift"],
+    "correct": 2,
+    "explanation": "Overtime is extra hours after your normal working time."
+  },
+  {
+    "date": "2026-10-08",
+    "slot": "morning",
+    "word": "pay rise",
+    "question": "The company pays her more now. She got a ___.",
+    "options": ["summer job", "CV", "pay rise", "diploma"],
+    "correct": 2,
+    "explanation": "A pay rise means your pay becomes higher."
+  },
+  {
+    "date": "2026-10-08",
+    "slot": "evening",
+    "word": "vacancy",
+    "question": "The firm needs a new worker. There is a ___.",
+    "options": ["colleague", "bonus", "career", "vacancy"],
+    "correct": 3,
+    "explanation": "A vacancy is an open job at a company."
+  },
+  {
+    "date": "2026-10-09",
+    "slot": "morning",
+    "word": "look for a job",
+    "question": "He has no work. He will ___ a job.",
+    "options": ["look for", "give up", "sign", "meet"],
+    "correct": 0,
+    "explanation": "Look for a job means you try to find work."
+  },
+  {
+    "date": "2026-10-09",
+    "slot": "evening",
+    "word": "apply for a job",
+    "question": "She likes this vacancy. She will ___ the job.",
+    "options": ["quit", "apply for", "give up", "fire"],
+    "correct": 1,
+    "explanation": "Apply for a job means you ask the company for that job."
+  },
+  {
+    "date": "2026-10-12",
+    "slot": "morning",
+    "word": "have an interview",
+    "question": "Tomorrow the manager will ask her questions. She will ___.",
+    "options": ["write a CV", "have an interview", "get a pension", "be retired"],
+    "correct": 1,
+    "explanation": "Have an interview means you meet the employer and answer questions."
+  },
+  {
+    "date": "2026-10-12",
+    "slot": "evening",
+    "word": "write a CV",
+    "question": "Before the interview he must ___.",
+    "options": ["get a pension", "be retired", "write a CV", "be unemployed"],
+    "correct": 2,
+    "explanation": "A CV lists your education and work experience."
+  },
+  {
+    "date": "2026-10-13",
+    "slot": "morning",
+    "word": "sign a contract",
+    "question": "She got the job. Now she will ___ a contract.",
+    "options": ["quit", "sign", "fire", "retire"],
+    "correct": 1,
+    "explanation": "Sign a contract means you agree to the job in writing."
+  },
+  {
+    "date": "2026-10-13",
+    "slot": "evening",
+    "word": "be/get fired",
+    "question": "He broke the company rules. He may ___.",
+    "options": ["get a promotion", "gain work experience", "get a pension", "get fired"],
+    "correct": 3,
+    "explanation": "Get fired means the company tells you to leave your job."
+  },
+  {
+    "date": "2026-10-14",
+    "slot": "morning",
+    "word": "get a promotion",
+    "question": "She works very well. She may ___.",
+    "options": ["get a promotion", "get fired", "be unemployed", "quit work"],
+    "correct": 0,
+    "explanation": "Get a promotion means you move to a higher position."
+  },
+  {
+    "date": "2026-10-14",
+    "slot": "evening",
+    "word": "be retired",
+    "question": "He is 67 and stops working. He will ___.",
+    "options": ["be unemployed", "get fired", "be retired", "apply for a job"],
+    "correct": 2,
+    "explanation": "Be retired means you stop working, often because of your age."
+  },
+  {
+    "date": "2026-10-15",
+    "slot": "morning",
+    "word": "be unemployed",
+    "question": "She lost her job and has no work. She is ___.",
+    "options": ["retired", "full-time", "well-paid", "unemployed"],
+    "correct": 3,
+    "explanation": "Unemployed means you do not have a job."
+  },
+  {
+    "date": "2026-10-15",
+    "slot": "evening",
+    "word": "well-paid",
+    "question": "This job pays a lot. It is ___.",
+    "options": ["badly-paid", "temporary", "well-paid", "part-time"],
+    "correct": 2,
+    "explanation": "Well-paid means the pay is high."
+  },
+  {
+    "date": "2026-10-16",
+    "slot": "morning",
+    "word": "earn a salary/wage",
+    "question": "Every month the workers ___ a salary.",
+    "options": ["sign", "earn", "quit", "write"],
+    "correct": 1,
+    "explanation": "Earn a salary means you receive money for your work."
+  },
+  {
+    "date": "2026-10-16",
+    "slot": "evening",
+    "word": "have training",
+    "question": "New workers learn the job. They ___.",
+    "options": ["get fired", "have training", "be retired", "give up work"],
+    "correct": 1,
+    "explanation": "Have training means you learn how to do the job."
+  }
+]

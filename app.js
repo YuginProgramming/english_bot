@@ -9,7 +9,8 @@ import { questions } from "./questions.js";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "data");
 const statePath = path.join(dataDir, "state.json");
-const quizzes = loadQuizzes();
+const quizzes = loadQuizFile("quizzes.json");
+const grade9Quizzes = loadQuizFile("quizzes-9.json");
 
 const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
 const timezone = process.env.TIMEZONE?.trim() || "Europe/Kyiv";
@@ -25,8 +26,8 @@ const bot = new TelegramBot(token, { polling: true });
 const activeByChat = new Map();
 let state = loadState();
 
-function loadQuizzes() {
-  const filePath = path.join(__dirname, "quizzes.json");
+function loadQuizFile(fileName) {
+  const filePath = path.join(__dirname, fileName);
   const list = JSON.parse(fs.readFileSync(filePath, "utf8"));
   for (const quiz of list) {
     if (!quiz.date || !quiz.slot || !quiz.question || !Array.isArray(quiz.options)) {
@@ -48,16 +49,16 @@ function localDate() {
   }).format(new Date());
 }
 
-async function sendScheduledQuiz(slot) {
-  const chatId = getChatId();
+async function sendQuizToChat(chatId, list, date, slot, label) {
   if (!chatId) {
-    console.error("No group is set. Add the bot to the group and send /bind.");
+    if (label === "group") {
+      console.error("No group is set. Set GROUP_CHAT_ID in .env.");
+    }
     return;
   }
-  const date = localDate();
-  const quiz = quizzes.find((item) => item.date === date && item.slot === slot);
+  const quiz = list.find((item) => item.date === date && item.slot === slot);
   if (!quiz) {
-    console.error(`No quiz for ${date} ${slot}.`);
+    console.error(`No ${label} quiz for ${date} ${slot}.`);
     return;
   }
   await bot.sendPoll(
@@ -71,7 +72,21 @@ async function sendScheduledQuiz(slot) {
       explanation: quiz.explanation,
     }
   );
-  console.log(`Sent ${date} ${slot} quiz.`);
+  console.log(`Sent ${date} ${slot} ${label} quiz.`);
+}
+
+async function sendScheduledQuiz(slot) {
+  const date = localDate();
+  const jobs = [
+    sendQuizToChat(getChatId(), quizzes, date, slot, "group"),
+    sendQuizToChat(process.env.CLASS_9A_CHAT_ID?.trim(), grade9Quizzes, date, slot, "9A"),
+  ];
+  const results = await Promise.allSettled(jobs);
+  for (const result of results) {
+    if (result.status === "rejected") {
+      console.error(`Failed to send a ${slot} quiz:`, result.reason?.message || result.reason);
+    }
+  }
 }
 
 function clampInt(value, fallback, min, max) {
@@ -99,9 +114,7 @@ function saveState() {
 }
 
 function getChatId() {
-  if (state.groupChatId) return state.groupChatId;
-  const fromEnv = process.env.GROUP_CHAT_ID?.trim();
-  return fromEnv || null;
+  return process.env.GROUP_CHAT_ID?.trim() || null;
 }
 
 function parseCommand(text) {
@@ -155,8 +168,8 @@ function helpText() {
     "I post an English quiz in this group on weekdays.",
     "Morning: 07:00. Evening: 19:00.",
     "This set runs from 25 September to 8 October.",
+    "Class 9A gets a jobs quiz from 28 September to 16 October.",
     "",
-    "A group admin sends /bind once in the group.",
     "/test starts a practice test now.",
     "/stop ends the current test.",
     "",
@@ -173,7 +186,7 @@ function slotTitle(slot) {
 async function startQuiz(slot) {
   const chatId = getChatId();
   if (!chatId) {
-    console.error("No group is set. Add the bot to the group and send /bind.");
+    console.error("No group is set. Set GROUP_CHAT_ID in .env.");
     return;
   }
   if (activeByChat.has(String(chatId))) {
@@ -333,7 +346,7 @@ bot.on("message", async (msg) => {
     return;
   }
 
-  if (command !== "bind" && command !== "test" && command !== "stop") return;
+  if (command !== "test" && command !== "stop") return;
 
   if (!isGroup(msg.chat)) {
     await bot.sendMessage(msg.chat.id, "Add me to the student group, then send commands there.");
@@ -345,24 +358,10 @@ bot.on("message", async (msg) => {
     return;
   }
 
-  if (command === "bind") {
-    state.groupChatId = String(msg.chat.id);
-    saveState();
-    await bot.sendMessage(
-      msg.chat.id,
-      `This group is saved.\nTests run on weekdays at 07:00 and 19:00 (${timezone}).\nChat id: ${msg.chat.id}`
-    );
-    return;
-  }
-
   if (command === "test") {
     if (activeByChat.has(String(msg.chat.id))) {
       await bot.sendMessage(msg.chat.id, "A test is already running. Send /stop to end it.");
       return;
-    }
-    if (String(getChatId()) !== String(msg.chat.id)) {
-      state.groupChatId = String(msg.chat.id);
-      saveState();
     }
     await startQuiz("practice");
     return;
@@ -415,20 +414,6 @@ bot.on("callback_query", async (query) => {
   });
 });
 
-bot.on("my_chat_member", (update) => {
-  const status = update.new_chat_member?.status;
-  const previous = update.old_chat_member?.status;
-  const joined = status === "member" || status === "administrator";
-  const wasOut = previous === "left" || previous === "kicked";
-  if (!isGroup(update.chat) || !joined || !wasOut) return;
-  bot
-    .sendMessage(
-      update.chat.id,
-      "Hello. I post English tests on weekdays at 07:00 and 19:00. A group admin should send /bind here."
-    )
-    .catch(() => {});
-});
-
 bot.on("polling_error", (error) => {
   console.error("Polling error:", error.message);
 });
@@ -450,7 +435,6 @@ schedule("0 19 * * 1-5", "evening");
 
 bot
   .setMyCommands([
-    { command: "bind", description: "Use this group for scheduled tests" },
     { command: "test", description: "Start a practice test now" },
     { command: "stop", description: "Stop the current test" },
     { command: "help", description: "How this bot works" },
@@ -462,5 +446,8 @@ bot
 const boundChat = getChatId();
 console.log("English bot is running.");
 console.log(`Timezone: ${timezone}`);
-console.log(`Quizzes: ${quizzes.length}, weekdays at 07:00 and 19:00`);
-console.log(boundChat ? `Group: ${boundChat}` : "Group: not set — send /bind in the group");
+console.log(`Quizzes: ${quizzes.length} for the main group, ${grade9Quizzes.length} for 9A`);
+console.log("Times: weekdays at 07:00 and 19:00");
+console.log(boundChat ? `Group: ${boundChat}` : "Group: not set — set GROUP_CHAT_ID in .env");
+const class9a = process.env.CLASS_9A_CHAT_ID?.trim();
+console.log(class9a ? `9A: ${class9a}` : "9A: not set");
