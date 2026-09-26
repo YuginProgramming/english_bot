@@ -457,7 +457,9 @@ async function finishVerbAnswer(session, correct, question) {
   if (session.index >= session.questions.length) {
     session.finished = true;
     verbTests.delete(session.userId);
-    await bot.sendMessage(session.chatId, resultText(session.correct));
+    await bot.sendMessage(session.chatId, `${resultText(session.correct)}\n\nСпробуй ще раз`, {
+      reply_markup: verbLevelKeyboard(),
+    });
     return;
   }
   session.busy = false;
@@ -511,15 +513,19 @@ async function handleVerbCallback(query) {
   await finishVerbAnswer(session, optionIndex === question.correctIndex, question);
 }
 
+function verbLevelKeyboard() {
+  return {
+    inline_keyboard: [
+      [{ text: "1. Обрати форму", callback_data: "vl:1" }],
+      [{ text: "2. Написати з підказкою", callback_data: "vl:2" }],
+      [{ text: "3. Написати без підказки", callback_data: "vl:3" }],
+    ],
+  };
+}
+
 async function offerVerbLevels(chatId) {
   await bot.sendMessage(chatId, "Обери рівень тесту з неправильних дієслів.", {
-    reply_markup: {
-      inline_keyboard: [
-        [{ text: "1. Обрати форму", callback_data: "vl:1" }],
-        [{ text: "2. Написати з підказкою", callback_data: "vl:2" }],
-        [{ text: "3. Написати без підказки", callback_data: "vl:3" }],
-      ],
-    },
+    reply_markup: verbLevelKeyboard(),
   });
 }
 
@@ -533,11 +539,7 @@ bot.on("message", async (msg) => {
 
   if (command === "start") {
     await bot.sendMessage(msg.chat.id, startText());
-    return;
-  }
-
-  if (command === "help") {
-    await bot.sendMessage(msg.chat.id, helpText());
+    if (!isGroup(msg.chat)) await offerVerbLevels(msg.chat.id);
     return;
   }
 
@@ -552,42 +554,6 @@ bot.on("message", async (msg) => {
       return;
     }
     await offerVerbLevels(msg.chat.id);
-    return;
-  }
-
-  if (command === "stop" && msg.chat?.type === "private") {
-    const stopped = verbTests.delete(String(msg.from.id));
-    await bot.sendMessage(msg.chat.id, stopped ? "Тест зупинено." : "Зараз тест не йде.");
-    return;
-  }
-
-  if (command !== "test" && command !== "stop") return;
-
-  if (!isGroup(msg.chat)) {
-    await bot.sendMessage(msg.chat.id, "Add me to the student group, then send commands there.");
-    return;
-  }
-
-  if (!(await isGroupAdmin(msg.chat.id, msg.from.id))) {
-    await bot.sendMessage(msg.chat.id, "Only a group admin can do that.");
-    return;
-  }
-
-  if (command === "test") {
-    if (activeByChat.has(String(msg.chat.id))) {
-      await bot.sendMessage(msg.chat.id, "A test is already running. Send /stop to end it.");
-      return;
-    }
-    await startQuiz("practice");
-    return;
-  }
-
-  if (command === "stop") {
-    const stopped = await stopQuiz(msg.chat.id);
-    await bot.sendMessage(
-      msg.chat.id,
-      stopped ? "Test stopped." : "There is no test running."
-    );
   }
 });
 
@@ -655,9 +621,6 @@ schedule("0 19 * * 1-5", "evening");
 bot
   .setMyCommands([
     { command: "verbs", description: "Irregular verb test in a private chat" },
-    { command: "test", description: "Start a practice test now" },
-    { command: "stop", description: "Stop the current test" },
-    { command: "help", description: "How this bot works" },
   ])
   .catch((error) => {
     console.error("Failed to set commands:", error.message);
