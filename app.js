@@ -163,6 +163,15 @@ async function isGroupAdmin(chatId, userId) {
   }
 }
 
+function startText() {
+  return [
+    "Цей бот допомагає вчити англійську мову.",
+    "А ще іноді може подарувати декому справжні призи 😊",
+    "",
+    "Пропозиції та питання до автора: @YevhenDudar",
+  ].join("\n");
+}
+
 function helpText() {
   return [
     "I post an English quiz in this group on weekdays.",
@@ -341,7 +350,12 @@ bot.on("message", async (msg) => {
   const command = parseCommand(msg.text);
   if (!command) return;
 
-  if (command === "start" || command === "help") {
+  if (command === "start") {
+    await bot.sendMessage(msg.chat.id, startText());
+    return;
+  }
+
+  if (command === "help") {
     await bot.sendMessage(msg.chat.id, helpText());
     return;
   }
