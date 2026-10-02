@@ -13,8 +13,8 @@
     "slot": "evening",
     "word": "into",
     "question": "The cat went ___ the box.",
-    "options": ["into", "tall", "shy", "lazy"],
-    "correct": 0,
+    "options": ["shy", "into", "tall", "lazy"],
+    "correct": 1,
     "explanation": "Into means going inside."
   },
   {
@@ -22,8 +22,8 @@
     "slot": "morning",
     "word": "tall",
     "question": "My brother is very ___.",
-    "options": ["tall", "across", "litter", "pollute"],
-    "correct": 0,
+    "options": ["litter", "pollute", "tall", "across"],
+    "correct": 2,
     "explanation": "Tall means not short."
   },
   {
@@ -31,8 +31,8 @@
     "slot": "evening",
     "word": "cheerful",
     "question": "She smiles a lot. She is ___.",
-    "options": ["cheerful", "under", "steal", "graffiti"],
-    "correct": 0,
+    "options": ["under", "graffiti", "steal", "cheerful"],
+    "correct": 3,
     "explanation": "A cheerful person is happy."
   },
   {
@@ -40,8 +40,8 @@
     "slot": "morning",
     "word": "recycle",
     "question": "We ___ old bottles and paper.",
-    "options": ["recycle", "bully", "lie", "fight"],
-    "correct": 0,
+    "options": ["bully", "recycle", "lie", "fight"],
+    "correct": 1,
     "explanation": "Recycle means use something again in a new way."
   },
   {
@@ -49,8 +49,8 @@
     "slot": "evening",
     "word": "spray graffiti",
     "question": "Don't ___ on the wall.",
-    "options": ["spray graffiti", "drop litter", "play truant", "copy someone's homework"],
-    "correct": 0,
+    "options": ["play truant", "copy someone's homework", "drop litter", "spray graffiti"],
+    "correct": 3,
     "explanation": "Spray graffiti means paint on walls. It is not allowed."
   },
   {
@@ -58,8 +58,8 @@
     "slot": "morning",
     "word": "along",
     "question": "We walked ___ the river.",
-    "options": ["along", "moody", "generous", "rude"],
-    "correct": 0,
+    "options": ["rude", "moody", "generous", "along"],
+    "correct": 3,
     "explanation": "Along means you follow the river."
   },
   {
@@ -67,8 +67,8 @@
     "slot": "evening",
     "word": "shy",
     "question": "He is quiet with new people. He is ___.",
-    "options": ["shy", "up", "off", "down"],
-    "correct": 0,
+    "options": ["up", "down", "off", "shy"],
+    "correct": 3,
     "explanation": "A shy person does not like talking to new people."
   },
   {
@@ -76,7 +76,7 @@
     "slot": "morning",
     "word": "beard",
     "question": "He has a ___ on his chin.",
-    "options": ["beard", "glasses", "moustache", "tall"],
+    "options": ["beard", "tall", "moustache", "glasses"],
     "correct": 0,
     "explanation": "A beard is hair on a man's chin and cheeks."
   },
@@ -94,8 +94,8 @@
     "slot": "morning",
     "word": "lie",
     "question": "Don't ___. Say what is true.",
-    "options": ["lie", "plant", "save", "reuse"],
-    "correct": 0,
+    "options": ["save", "plant", "reuse", "lie"],
+    "correct": 3,
     "explanation": "Lie means say something that is not true."
   },
   {
@@ -103,8 +103,8 @@
     "slot": "evening",
     "word": "over",
     "question": "The bird flew ___ the house.",
-    "options": ["over", "selfish", "stupid", "lazy"],
-    "correct": 0,
+    "options": ["lazy", "selfish", "stupid", "over"],
+    "correct": 3,
     "explanation": "Over means above something."
   },
   {
@@ -112,7 +112,7 @@
     "slot": "morning",
     "word": "hard-working",
     "question": "She studies every day. She is ___.",
-    "options": ["hard-working", "out of", "into", "under"],
+    "options": ["hard-working", "into", "under", "out of"],
     "correct": 0,
     "explanation": "A hard-working person works or studies a lot."
   },
@@ -121,8 +121,8 @@
     "slot": "evening",
     "word": "drop litter",
     "question": "Don't ___ rubbish in the street.",
-    "options": ["drop litter", "play loud music", "play truant", "be rude"],
-    "correct": 0,
+    "options": ["play truant", "drop litter", "be rude", "play loud music"],
+    "correct": 1,
     "explanation": "Drop litter means throw rubbish on the ground."
   },
   {
@@ -130,8 +130,8 @@
     "slot": "morning",
     "word": "plant",
     "question": "Let's ___ a tree in the garden.",
-    "options": ["plant", "bully", "steal", "fight"],
-    "correct": 0,
+    "options": ["fight", "steal", "plant", "bully"],
+    "correct": 2,
     "explanation": "Plant means put a tree or flower in the ground."
   },
   {
@@ -139,8 +139,8 @@
     "slot": "evening",
     "word": "glasses",
     "question": "I can't see well. I wear ___.",
-    "options": ["glasses", "beard", "moustache", "well-built"],
-    "correct": 0,
+    "options": ["well-built", "moustache", "glasses", "beard"],
+    "correct": 2,
     "explanation": "Glasses help people see."
   },
   {
@@ -148,8 +148,8 @@
     "slot": "morning",
     "word": "across",
     "question": "They walked ___ the road.",
-    "options": ["across", "cheerful", "friendly", "clever"],
-    "correct": 0,
+    "options": ["cheerful", "clever", "friendly", "across"],
+    "correct": 3,
     "explanation": "Across means from one side to the other side."
   },
   {
@@ -157,8 +157,8 @@
     "slot": "evening",
     "word": "talkative",
     "question": "She talks a lot. She is ___.",
-    "options": ["talkative", "through", "around", "along"],
-    "correct": 0,
+    "options": ["through", "talkative", "along", "around"],
+    "correct": 1,
     "explanation": "A talkative person talks a lot."
   },
   {
@@ -166,8 +166,8 @@
     "slot": "morning",
     "word": "save",
     "question": "Please ___ water. Don't waste it.",
-    "options": ["save", "beard", "moustache", "glasses"],
-    "correct": 0,
+    "options": ["beard", "moustache", "save", "glasses"],
+    "correct": 2,
     "explanation": "Save water means use less water."
   },
   {
@@ -175,8 +175,8 @@
     "slot": "evening",
     "word": "use a mobile phone in class",
     "question": "Don't ___ a mobile phone in class.",
-    "options": ["use", "plant", "cut down", "clean up"],
-    "correct": 0,
+    "options": ["cut down", "use", "clean up", "plant"],
+    "correct": 1,
     "explanation": "Use a mobile phone in class is against the rules."
   }
 ]
