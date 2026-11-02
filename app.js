@@ -4,6 +4,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import cron from "node-cron";
 import TelegramBot from "node-telegram-bot-api";
+import { sendScheduled } from "./send-jobs.js";
 import { questions } from "./questions.js";
 import {
   STICKER_AT,
@@ -17,8 +18,6 @@ import {
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, "data");
 const statePath = path.join(dataDir, "state.json");
-const quizzes = loadQuizFile("quizzes.json");
-const grade9Quizzes = loadQuizFile("quizzes-9.json");
 
 const token = process.env.TELEGRAM_BOT_TOKEN?.trim();
 const timezone = process.env.TIMEZONE?.trim() || "Europe/Kyiv";
@@ -35,91 +34,6 @@ const activeByChat = new Map();
 const verbTests = new Map();
 let stickerIds = null;
 let state = loadState();
-
-function loadQuizFile(fileName) {
-  const filePath = path.join(__dirname, fileName);
-  const list = JSON.parse(fs.readFileSync(filePath, "utf8"));
-  for (const quiz of list) {
-    if (!quiz.date || !quiz.slot || !quiz.question || !Array.isArray(quiz.options)) {
-      throw new Error(`Bad quiz entry: ${quiz.date} ${quiz.slot}`);
-    }
-    if (!Number.isInteger(quiz.correct) || quiz.correct < 0 || quiz.correct >= quiz.options.length) {
-      throw new Error(`Bad correct index: ${quiz.date} ${quiz.slot}`);
-    }
-  }
-  return list;
-}
-
-function localDate() {
-  return new Intl.DateTimeFormat("en-CA", {
-    timeZone: timezone,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  }).format(new Date());
-}
-
-async function sendQuizToChat(chatId, list, date, slot, label) {
-  if (!chatId) {
-    if (label === "group") {
-      console.error("No group is set. Set GROUP_CHAT_ID in .env.");
-    }
-    return;
-  }
-  const quiz = list.find((item) => item.date === date && item.slot === slot);
-  if (!quiz) {
-    console.error(`No ${label} quiz for ${date} ${slot}.`);
-    return;
-  }
-  await bot.sendPoll(
-    chatId,
-    quiz.question,
-    quiz.options.map((text) => ({ text })),
-    {
-      type: "quiz",
-      correct_option_id: quiz.correct,
-      is_anonymous: true,
-      explanation: quiz.explanation,
-    }
-  );
-  console.log(`Sent ${date} ${slot} ${label} quiz.`);
-}
-
-function uniqueChats(names) {
-  const seen = new Set();
-  const chats = [];
-  for (const name of names) {
-    const chatId = process.env[name]?.trim();
-    if (!chatId || seen.has(chatId)) continue;
-    seen.add(chatId);
-    chats.push({ chatId, label: name.replace("_CHAT_ID", "") });
-  }
-  return chats;
-}
-
-async function sendScheduledQuiz(slot) {
-  const date = localDate();
-  const grade7 = ["CLASS_7V_CHAT_ID", "CLASS_7D_CHAT_ID"];
-  const jobsSet = [
-    "GROUP_CHAT_ID",
-    "CLASS_9A_CHAT_ID",
-    "CLASS_9B_CHAT_ID",
-    "CLASS_9G_CHAT_ID",
-    "CLASS_11V_CHAT_ID",
-  ];
-  const jobs = [
-    ...uniqueChats(grade7).map((chat) => sendQuizToChat(chat.chatId, quizzes, date, slot, chat.label)),
-    ...uniqueChats(jobsSet).map((chat) =>
-      sendQuizToChat(chat.chatId, grade9Quizzes, date, slot, chat.label)
-    ),
-  ];
-  const results = await Promise.allSettled(jobs);
-  for (const result of results) {
-    if (result.status === "rejected") {
-      console.error(`Failed to send a ${slot} quiz:`, result.reason?.message || result.reason);
-    }
-  }
-}
 
 function clampInt(value, fallback, min, max) {
   const number = Number.parseInt(value, 10);
@@ -209,8 +123,7 @@ function helpText() {
   return [
     "I post an English quiz in this group on weekdays.",
     "Morning: 07:00. Evening: 19:00.",
-    "Classes 7V and 7D get quizzes from 25 September to 8 October.",
-    "The other classes get a jobs quiz from 28 September to 16 October.",
+    "7V, 7D, and the jobs groups get one quiz at 07:00 and one at 19:00 on weekdays, from 3 November to 24 December.",
     "",
     "/verbs starts the irregular verb test in a private chat.",
     "/test starts a practice test now.",
@@ -603,20 +516,20 @@ bot.on("polling_error", (error) => {
   console.error("Polling error:", error.message);
 });
 
-function schedule(expression, slot) {
+for (const [expression, slot] of [
+  ["0 7 * * 1-5", "morning"],
+  ["0 19 * * 1-5", "evening"],
+]) {
   cron.schedule(
     expression,
     () => {
-      sendScheduledQuiz(slot).catch((error) => {
+      sendScheduled(slot).catch((error) => {
         console.error(`Failed to send the ${slot} quiz:`, error.message);
       });
     },
     { timezone }
   );
 }
-
-schedule("0 7 * * 1-5", "morning");
-schedule("0 19 * * 1-5", "evening");
 
 bot
   .setMyCommands([
@@ -629,10 +542,5 @@ bot
 const boundChat = getChatId();
 console.log("English bot is running.");
 console.log(`Timezone: ${timezone}`);
-console.log(`Quizzes: ${quizzes.length} for 7V and 7D, ${grade9Quizzes.length} for the jobs groups`);
-console.log("Times: weekdays at 07:00 and 19:00");
 console.log(boundChat ? `Jobs group: ${boundChat}` : "Jobs group: not set — set GROUP_CHAT_ID in .env");
-console.log(`7V and 7D: ${uniqueChats(["CLASS_7V_CHAT_ID", "CLASS_7D_CHAT_ID"]).length} groups`);
-console.log(
-  `Jobs quizzes: ${uniqueChats(["GROUP_CHAT_ID", "CLASS_9A_CHAT_ID", "CLASS_9B_CHAT_ID", "CLASS_9G_CHAT_ID", "CLASS_11V_CHAT_ID"]).length} groups`
-);
+console.log("Group quizzes: weekdays at 07:00 and 19:00, 3 Nov–24 Dec");
